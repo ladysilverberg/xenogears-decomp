@@ -757,7 +757,14 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008EF5C);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008EFA0);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008EFE4);
+void func_8008EFE4(void) {
+    int a = FieldScriptVMGetArgument(1);
+    int b = FieldScriptVMGetArgument(3);
+    int c = FieldScriptVMGetArgument(5);
+    int d = FieldScriptVMGetArgument(7);
+    FieldSetClipDimensions(a, b, c, d);
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 9;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008F070);
 
@@ -811,7 +818,14 @@ void func_8008F4FC(void) {
     g_FieldScriptVMCurActor->scriptInstructionPointer += 5;
 }
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008F558);
+void func_8008F558(void) {
+    int a = FieldScriptVMGetArgument(1);
+    int b = FieldScriptVMGetArgument(5);
+    int c = FieldScriptVMGetArgument(3);
+    int d = FieldScriptVMGetArgument(7);
+    func_800855C8(a, b, c, d);
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 9;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008F5E4);
 
