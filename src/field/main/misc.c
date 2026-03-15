@@ -970,7 +970,13 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800933F8);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80093568);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80093664);
+void func_80093664(void) {
+    u8 byte1 = ((u8*)g_FieldScriptVMCurScriptData)[g_FieldScriptVMCurActor->scriptInstructionPointer + 1];
+    u8 byte2 = ((u8*)g_FieldScriptVMCurScriptData)[g_FieldScriptVMCurActor->scriptInstructionPointer + 2];
+    int result = func_80092424(byte1, byte2);
+    FieldScriptMemoryWriteU16(FieldScriptVMGetInstructionArgument(3) & 0xFFFF, result);
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 5;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800936E4);
 
