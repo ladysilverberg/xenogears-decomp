@@ -340,7 +340,9 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc4", func_8007B478);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc4", func_8007B614);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc4", func_8007B694);
+int func_8007B694(s32* ptr) {
+    return (-func_8004B32C(ptr[2], ptr[0])) & 0xFFF;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc4", func_8007B6C4);
 

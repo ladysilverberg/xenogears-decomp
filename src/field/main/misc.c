@@ -331,11 +331,17 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008B144);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008B180);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008B210);
+void func_8008B210(void) {
+    g_FieldScriptVMCurActor->unk11E = FieldScriptVMGetArgument(1);
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 3;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008B248);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008B2F0);
+void func_8008B2F0(void) {
+    FieldDistortionInitialize(0);
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 0xF;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008B328);
 
@@ -1616,7 +1622,9 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80097364);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800973A4);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80097410);
+void func_80097410(void) {
+    g_FieldScriptVMCurActor->scriptInstructionPointer += FieldScriptVMGetArgument(1) * 3 + 3;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009744C);
 
@@ -1713,7 +1721,10 @@ void FieldScriptVMHandlerGetActorPosition(void) {
     g_FieldScriptVMCurActor->scriptInstructionPointer += 8;
 }
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009A0FC);
+void func_8009A0FC(void) {
+    g_FieldScriptVMCurActor->defaultAnimationId = ((u8*)g_FieldScriptVMCurScriptData)[g_FieldScriptVMCurActor->scriptInstructionPointer + 1];
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 2;
+}
 
 void FieldScriptVMHandlerPlayAnimation(void) {
     unsigned char animationID;
@@ -1724,7 +1735,10 @@ void FieldScriptVMHandlerPlayAnimation(void) {
     g_FieldScriptVMCurActor->scriptInstructionPointer += 2;
 }
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009A174);
+void func_8009A174(void) {
+    FieldScriptVMHandlerPlayAnimation();
+    g_FieldScriptVMCurActor->flags &= 0xFFFEFFFF;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009A1AC);
 
@@ -1842,7 +1856,11 @@ void func_8009ABAC(void) {
     FieldSetCurrentActorRotation(D_800AEA34[func_8009A8DC() - nRotationLUTIndex & MASK_8DIR_MOVEMENT_NUM_DIRECTIONS]);
 }
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009ABFC);
+extern u16 D_800AEA34[];
+
+void func_8009ABFC(void) {
+    func_8009A958(D_800AEA34[FieldScriptVMGetArgument(2)]);
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009AC34);
 
