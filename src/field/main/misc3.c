@@ -42,7 +42,20 @@ void FieldLoadTIMWithClut(u_long *pTimData, short x, short y, short clutX, short
     }
 }
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc3", func_80070488);
+extern s32 D_800ADB60;
+extern void* D_800ADC14;
+extern s32 D_8004F34C;
+
+void func_80070488(void) {
+    void* pStreamFile;
+
+    if (D_800ADB60 == 0) {
+        D_800ADB60 = 1;
+        pStreamFile = ArchiveAllocStreamFile(4, 1);
+        D_800ADC14 = pStreamFile;
+        func_80029EB0(((D_8004F34C & 0xFFF) << 1) + 0xB9, pStreamFile, 0, 0, 0, 0, 0, 0, 0, 0);
+    }
+}
 
 extern s32 D_800ADB60;
 extern void* D_800ADC14;
