@@ -705,7 +705,15 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc4", func_80080968);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc4", func_800809D0);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc4", func_80080A18);
+extern s32 D_800ADB58;
+extern s32 D_800ADB5C;
+
+int func_80080A18(void) {
+    ActorData* pActor = g_FieldActors[D_800ADB58].pActorData;
+    int index = D_800ADB5C;
+    D_800ADB5C = index + 1;
+    return ((s32*)pActor->unk118)[index];
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc4", func_80080A74);
 
