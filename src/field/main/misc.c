@@ -1582,7 +1582,15 @@ void func_80096644(void) {
     }
 }
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800966B4);
+void func_800966B4(void) {
+    int arg = FieldScriptVMGetArgument(1);
+    int val = FieldScriptVMGetVariableValue(0);
+    if (arg < val) {
+        g_FieldScriptVMCurActor->scriptInstructionPointer += 5;
+    } else {
+        g_FieldScriptVMCurActor->scriptInstructionPointer = FieldScriptVMGetInstructionArgument(3);
+    }
+}
 
 void func_80096724(void) {
     int arg = FieldScriptVMGetArgument(1);
