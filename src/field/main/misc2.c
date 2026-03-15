@@ -39,7 +39,14 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc2", func_80073750);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc2", func_80073930);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc2", func_80073988);
+extern s32 D_800ADC18;
+
+int func_80073988(int unused, int angle) {
+    if (D_800ADC18) {
+        return angle & 0xFFF;
+    }
+    return func_80073930();
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc2", func_800739C0);
 
@@ -109,7 +116,13 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc2", func_80075910);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc2", func_800759E4);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc2", func_80075B08);
+extern s16 D_800B218E;
+
+void func_80075B08(void* spriteData, u8* color) {
+    if (D_800B218E == 0) {
+        SpriteSetColor(spriteData, color[0], color[1], color[2]);
+    }
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc2", func_80075B44);
 

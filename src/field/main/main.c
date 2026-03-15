@@ -19,13 +19,28 @@ void FieldRenderSync(void) {
 
 INCLUDE_ASM("asm/field/nonmatchings/main/main", FieldLoadUITextures);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/main", func_800777DC);
+extern s32 D_8004F34C;
+
+void func_800777DC(void) {
+    ArchiveCdDataSync(0);
+    do {} while (func_8001B484((D_8004F34C & 0xFFF) << 1, 0));
+}
 
 void FieldUpdateDeltaTime(void) {
     g_FrameDeltaTime = Vsync(1);
 }
 
-INCLUDE_ASM("asm/field/nonmatchings/main/main", func_80077844);
+void func_80077844(s16* dest, int v0, int v1, int v2, int v3, int v4, int v5, int v6, int v7, int v8) {
+    dest[0] = v0;
+    dest[1] = v1;
+    dest[2] = v2;
+    dest[3] = v3;
+    dest[4] = v4;
+    dest[5] = v5;
+    dest[6] = v6;
+    dest[7] = v7;
+    dest[8] = v8;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/main", func_80077884);
 
