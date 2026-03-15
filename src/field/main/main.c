@@ -1,4 +1,6 @@
 #include "common.h"
+#include "field/main.h"
+#include "field/actor.h"
 #include "psyq/libgpu.h"
 #include "psyq/libetc.h"
 #include "system/memory.h"
@@ -68,19 +70,31 @@ void func_80077C88(void) {
 }
 */
 
-INCLUDE_ASM("asm/field/nonmatchings/main/main", func_80077D2C);
-/*
+extern void* g_PartyDataBuffers[];
+extern void* D_8005A418;
+extern void* D_8005A41C;
+
 void func_80077D2C(void) {
-    HeapUnpinBlock(D_8005A414);
+    HeapUnpinBlock(g_PartyDataBuffers[0]);
     HeapUnpinBlock(D_8005A418);
     HeapUnpinBlock(D_8005A41C);
-    HeapFree(D_8005A414);
+    HeapFree(g_PartyDataBuffers[0]);
     HeapFree(D_8005A418);
     HeapFree(D_8005A41C);
 }
-*/
 
-INCLUDE_ASM("asm/field/nonmatchings/main/main", func_80077DAC);
+extern s32 D_800ADB9C;
+extern char D_8006FB80[];
+
+void func_80077DAC(void) {
+    D_800ADB9C = Vsync(1);
+    FieldClearAndSwapOTag();
+    FieldPollControllers();
+    if (g_FieldSystemMode == 0) {
+        func_80281B00(&D_8006FB80);
+    }
+    func_800A31E8();
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/main", func_80077E10);
 
