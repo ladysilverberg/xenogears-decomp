@@ -751,9 +751,19 @@ void func_8008F444(void) {
     g_FieldScriptVMCurActor->scriptInstructionPointer += 5;
 }
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008F4A0);
+void func_8008F4A0(void) {
+    int a = FieldScriptVMGetArgument(3) << 1;
+    int b = FieldScriptVMGetArgument(1);
+    func_8003A55C(a, b);
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 5;
+}
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008F4FC);
+void func_8008F4FC(void) {
+    int a = FieldScriptVMGetArgument(1);
+    int b = FieldScriptVMGetArgument(3);
+    func_80085634(a, b);
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 5;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008F558);
 
@@ -1553,7 +1563,11 @@ void func_80096790(void) {
     g_FieldScriptVMCurActor->scriptInstructionPointer += 3;
 }
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800967E8);
+void func_800967E8(void) {
+    int addr = FieldScriptVMGetInstructionArgument(1) & 0xFFFF;
+    FieldScriptMemoryWriteU16(addr, FieldScriptVMGetVariableValue(0));
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 3;
+}
 
 void FieldPartyMemberIncreaseHp(int i, int amount) {
     g_GameState->characters[g_GamePartyMembers[i]].hp += amount;
@@ -2057,7 +2071,12 @@ void func_8009B664(void) {
     g_FieldScriptVMCurActor->scriptInstructionPointer += 3;
 }
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009B6AC);
+void func_8009B6AC(void) {
+    int a = FieldScriptVMGetArgument(1);
+    int b = FieldScriptVMGetArgument(3);
+    func_8009AE3C(a, b);
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 5;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009B708);
 
