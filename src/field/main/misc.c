@@ -390,7 +390,15 @@ void func_8008B210(void) {
     g_FieldScriptVMCurActor->scriptInstructionPointer += 3;
 }
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008B248);
+void func_8008B248(void) {
+    int arg9 = FieldScriptVMGetArgument(9);
+    int arg3 = FieldScriptVMGetArgument(3);
+    int arg5 = FieldScriptVMGetArgument(5);
+    int arg7 = FieldScriptVMGetArgument(7);
+    int arg1 = FieldScriptVMGetArgument(1);
+    func_80071D08(1, arg9, arg3, arg5, arg7, arg1);
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 0xB;
+}
 
 void func_8008B2F0(void) {
     FieldDistortionInitialize(0);
