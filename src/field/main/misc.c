@@ -496,7 +496,10 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008D808);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008DA04);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008DAFC);
+void func_8008DAFC(void) {
+    g_FieldScriptVMCurActor->parentActorId = 0xFF;
+    g_FieldScriptVMCurActor->scriptInstructionPointer++;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008DB2C);
 
@@ -595,21 +598,35 @@ void func_8008E3E8(void) {
     func_8008E148(*(u16*)g_FieldScriptVMCurActor);
 }
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008E414);
+void func_8008E414(void) {
+    func_8008E148(((u16*)g_FieldScriptVMCurActor)[1]);
+}
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008E440);
+void func_8008E440(void) {
+    func_8008E148(((u16*)g_FieldScriptVMCurActor)[2]);
+}
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008E46C);
+void func_8008E46C(void) {
+    func_8008E148(((u16*)g_FieldScriptVMCurActor)[3]);
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008E498);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008E4EC);
+void func_8008E4EC(void) {
+    func_8008E498(*(u16*)g_FieldScriptVMCurActor);
+}
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008E518);
+void func_8008E518(void) {
+    func_8008E498(((u16*)g_FieldScriptVMCurActor)[1]);
+}
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008E544);
+void func_8008E544(void) {
+    func_8008E498(((u16*)g_FieldScriptVMCurActor)[2]);
+}
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008E570);
+void func_8008E570(void) {
+    func_8008E498(((u16*)g_FieldScriptVMCurActor)[3]);
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008E59C);
 
@@ -1834,9 +1851,15 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009ACEC);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009AD6C);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009ADDC);
+void func_8009ADDC(void) {
+    D_800AF9D8[0] |= 0x4000;
+    g_FieldScriptVMCurActor->scriptInstructionPointer++;
+}
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009AE0C);
+void func_8009AE0C(void) {
+    D_800AF9D8[0] &= 0xBFFF;
+    g_FieldScriptVMCurActor->scriptInstructionPointer++;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009AE3C);
 

@@ -6,17 +6,11 @@
 
 extern int g_FrameDeltaTime;
 
-INCLUDE_ASM("asm/field/nonmatchings/main/main", FieldInitializeControllers);
-/*
 void FieldInitializeControllers(void) {
-    FieldSetControllerBuffers(&g_C1Buffer, &g_C2Buffer);
-    func_8007AE14(3, 4);
-    func_8007ADA4(0, 0x140, 0, 0xE0);
-    func_8007AE2C(0, 0x50, 100);
-    func_8007AE2C(1, 0xFA, 100);
-    func_8007ADA4(0, 300, 10, 0xDC);
+    HeapChangeCurrentUser(8, 0);
+    ArchiveSetIndex(4, 0);
+    FieldInitializeControllersAndMouse();
 }
-*/
 
 void FieldRenderSync(void) {
     DrawSync(0);
