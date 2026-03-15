@@ -246,7 +246,18 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc5", func_800A7C58);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc5", func_800A8314);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc5", func_800A83B4);
+extern s32 D_800AF278;
+extern void* D_800AFC60;
+extern void* D_800AFC64;
+
+void func_800A83B4(void) {
+    if (D_800AF278) {
+        D_800AF278 = 0;
+        DrawSync(0);
+        HeapFree(D_800AFC60);
+        HeapFree(D_800AFC64);
+    }
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc5", func_800A8408);
 

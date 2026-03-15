@@ -876,4 +876,8 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc4", func_80086BA8);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc4", func_80086C34);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc4", func_80086D4C);
+void func_80086D4C(void) {
+    GameSoftReset();
+    D_800B00C0 = 1;
+    g_FieldScriptVMCurActor->scriptInstructionPointer++;
+}
