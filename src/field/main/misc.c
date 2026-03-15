@@ -905,15 +905,42 @@ void func_80090B9C(void) {
     g_FieldScriptVMCurActor->scriptInstructionPointer += 7;
 }
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80090C20);
-
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80090CB8);
-
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80090D50);
-
 extern s16 D_800AF938;
 extern s16 D_800AF936;
 extern s32 D_800AF930;
+
+void func_80090C20(void) {
+    u8 mode = ((u8*)g_FieldScriptVMCurScriptData)[g_FieldScriptVMCurActor->scriptInstructionPointer + 3];
+    if (mode == 0) {
+        FieldScriptMemoryWriteU16(FieldScriptVMGetInstructionArgument(1) & 0xFFFF, D_800AF938);
+    } else {
+        D_800AF938 = FieldScriptVMGetInstructionArgument(1);
+    }
+    g_FieldScriptMaxInstructionCount++;
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 4;
+}
+
+void func_80090CB8(void) {
+    u8 mode = ((u8*)g_FieldScriptVMCurScriptData)[g_FieldScriptVMCurActor->scriptInstructionPointer + 3];
+    if (mode == 0) {
+        FieldScriptMemoryWriteU16(FieldScriptVMGetInstructionArgument(1) & 0xFFFF, D_800AF936);
+    } else {
+        D_800AF936 = FieldScriptVMGetInstructionArgument(1);
+    }
+    g_FieldScriptMaxInstructionCount++;
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 4;
+}
+
+void func_80090D50(void) {
+    u8 mode = ((u8*)g_FieldScriptVMCurScriptData)[g_FieldScriptVMCurActor->scriptInstructionPointer + 3];
+    if (mode == 0) {
+        FieldScriptMemoryWriteU16(FieldScriptVMGetInstructionArgument(1) & 0xFFFF, D_800AF930);
+    } else {
+        D_800AF930 = FieldScriptVMGetInstructionArgument(1) & 0xFFFF;
+    }
+    g_FieldScriptMaxInstructionCount++;
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 4;
+}
 
 void func_80090DEC(void) {
     FieldScriptMemoryWriteU16(FieldScriptVMGetInstructionArgument(1) & 0xFFFF, D_800AF938);
