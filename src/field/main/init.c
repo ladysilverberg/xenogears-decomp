@@ -1,11 +1,24 @@
 #include "common.h"
 
 #include "field/main.h"
+#include "system/controller.h"
 #include "psyq/libgpu.h"
 #include "psyq/libgte.h"
 #include "psyq/libetc.h"
 
-INCLUDE_ASM("asm/field/nonmatchings/main/init", FieldInitializeControllersAndMouse);
+extern void FieldSetControllerBuffers(u_char*, u_char*);
+extern void FieldSetMouseSpeed(int, int);
+extern void func_8007ADA4(int, int, int, int);
+extern void FieldSetMousePosition(int, int, int);
+
+void FieldInitializeControllersAndMouse(void) {
+    FieldSetControllerBuffers(g_C1Buffer, g_C1Buffer + CONTROLLER_BUFFER_SIZE);
+    FieldSetMouseSpeed(3, 4);
+    func_8007ADA4(0, 0x140, 0, 0xE0);
+    FieldSetMousePosition(0, 0x50, 0x64);
+    FieldSetMousePosition(1, 0xFA, 0x64);
+    func_8007ADA4(0, 0x12C, 0xA, 0xDC);
+}
 
 void FieldSetClipDimensions(short x, short y, short w, short h) {
     g_FieldRenderContexts[0].drawEnvs[0].clip.y = y;

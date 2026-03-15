@@ -354,9 +354,19 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc4", func_8007C670);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc4", func_8007C694);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc4", func_8007CD3C);
+extern s32 D_800ADC10;
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc4", func_8007CD60);
+void* func_8007CD3C(int size) {
+    s32 offset = D_800ADC10;
+    D_800ADC10 = offset + size;
+    return (void*)((offset << 2) + (u32)PSX_SCRATCH);
+}
+
+extern s32 D_800ADC10;
+
+void func_8007CD60(int value) {
+    D_800ADC10 -= value;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc4", func_8007CD80);
 
@@ -705,7 +715,11 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc4", func_800815F0);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc4", func_80081C54);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc4", func_80081F5C);
+int func_80081F5C(u32* ptr) {
+    u32 a = (ptr[0] >> 9) & 3;
+    u32 b = ptr[5] >> 3;
+    return -(int)((a & b) != 0);
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc4", func_80081F80);
 

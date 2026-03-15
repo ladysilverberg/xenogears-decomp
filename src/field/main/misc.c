@@ -221,9 +221,13 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80088B68);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80088C1C);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80088CF8);
+void func_80088CF8(void) {
+    func_80088D38(0);
+}
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80088D18);
+void func_80088D18(void) {
+    func_80088D38(4);
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80088D38);
 
