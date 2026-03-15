@@ -1758,7 +1758,13 @@ void func_80097364(void) {
     g_FieldScriptVMCurActor->scriptInstructionPointer += 3;
 }
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800973A4);
+void func_800973A4(void) {
+    int archiveIndex = FieldScriptVMGetInstructionArgument(2) & 0xFFFF;
+    u8 channel = ((u8*)g_FieldScriptVMCurScriptData)[g_FieldScriptVMCurActor->scriptInstructionPointer + 1];
+    if (func_8001B484(archiveIndex, channel) == 0) {
+        g_FieldScriptVMCurActor->scriptInstructionPointer += 4;
+    }
+}
 
 void func_80097410(void) {
     g_FieldScriptVMCurActor->scriptInstructionPointer += FieldScriptVMGetArgument(1) * 3 + 3;
