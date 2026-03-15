@@ -422,9 +422,21 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008CD48);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008CDD4);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008CE64);
+void func_8008CE64(void) {
+    int id = func_8008CF3C(FieldScriptVMGetArgument(1));
+    if (id != 0xFF) {
+        *(u16*)((u8*)g_GameState + 0x1D32) &= ~(1 << id);
+    }
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 3;
+}
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008CED0);
+void func_8008CED0(void) {
+    int id = func_8008CF3C(FieldScriptVMGetArgument(1));
+    if (id != 0xFF) {
+        *(u16*)((u8*)g_GameState + 0x1D32) |= (1 << id);
+    }
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 3;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008CF3C);
 
@@ -729,7 +741,11 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008F0B4);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008F1C8);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008F2D8);
+void func_8008F2D8(void) {
+    int arg = FieldScriptVMGetArgument(1);
+    func_80023290(g_FieldActors[D_800AFD1C].pSpriteData, arg);
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 3;
+}
 
 extern s32 D_800C3A5C;
 extern s32 D_800C3A60;
