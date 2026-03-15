@@ -412,7 +412,10 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008CED0);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008CF3C);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008CF9C);
+void func_8008CF9C(void) {
+    g_FieldScriptVMCurActor->faceId = func_8008CF3C(FieldScriptVMGetArgument(1));
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 3;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008CFEC);
 
@@ -1701,7 +1704,11 @@ void func_80097410(void) {
     g_FieldScriptVMCurActor->scriptInstructionPointer += FieldScriptVMGetArgument(1) * 3 + 3;
 }
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009744C);
+extern s32 D_800B226C;
+
+int func_8009744C(void) {
+    return (((g_FieldActors[D_800B226C].pActorData->rotationY + 0x100) >> 9) + 2) & 7;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009749C);
 
