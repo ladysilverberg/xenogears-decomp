@@ -320,7 +320,18 @@ void func_8008A520(void) {
     }
 }
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008A558);
+extern s32 D_800ADB2C;
+
+int func_8008A558(void) {
+    if (D_800ADB2C) {
+        return -1;
+    }
+    if (ArchiveDataSync()) {
+        return -1;
+    }
+    ArchiveCdDataSync(0);
+    return 0;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008A5A0);
 
@@ -741,7 +752,17 @@ void func_8008F668(void) {
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008F6AC);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008F724);
+extern s32 D_800ADBDC;
+extern s32 D_8004F340;
+
+void func_8008F724(void) {
+    if (D_800ADBDC == 0) {
+        D_800B00C0 = 1;
+    } else {
+        D_8004F340 = 0;
+        func_8008F7B8();
+    }
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008F76C);
 
@@ -1981,7 +2002,26 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009AEE0);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009B15C);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009B184);
+extern u8 D_800B21CF;
+extern u8 D_800B21CC;
+extern s32 D_800B2368;
+extern s32 D_800B2364;
+extern s32 D_800B2360;
+extern u8 D_800B21CE;
+
+void func_8009B184(void) {
+    int i;
+    D_800B21CF = 0;
+    D_800B21CC = 0;
+    D_800B2368 = 0;
+    D_800B2364 = 0;
+    D_800B2360 = 0;
+    D_800B21CE = 0;
+    for (i = 0; i < 0x20; i++) {
+        func_80081C54(D_800B226C);
+    }
+    g_FieldScriptVMCurActor->scriptInstructionPointer++;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009B210);
 
