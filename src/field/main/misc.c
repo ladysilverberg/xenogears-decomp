@@ -717,7 +717,18 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008E59C);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008E718);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008E85C);
+extern s32 D_800B2298;
+extern s32 D_800B229C;
+
+void func_8008E85C(void) {
+    D_800B2298 = FieldScriptVMGetArgument(1);
+    D_800B229C = FieldScriptVMGetArgument(3);
+    if (D_800B229C > 0x20) {
+        D_800B229C = 0x20;
+    }
+    func_8008E718();
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 5;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008E8C8);
 
@@ -758,7 +769,13 @@ void func_8008F348(void) {
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008F394);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008F3D0);
+void func_8008F3D0(void) {
+    int a = FieldScriptVMGetArgument(3) << 1;
+    int b = FieldScriptVMGetArgument(1);
+    int c = FieldScriptVMGetArgument(5);
+    func_8003A450(a, b, c);
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 7;
+}
 
 void func_8008F444(void) {
     int a = FieldScriptVMGetArgument(3) << 1;
