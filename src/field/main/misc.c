@@ -761,9 +761,13 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80092148);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800921E8);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800923E4);
+void func_800923E4(void) {
+    g_FieldScriptVMCurActor->scriptInstructionPointer++;
+}
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80092404);
+void func_80092404(void) {
+    g_FieldScriptVMCurActor->scriptInstructionPointer++;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80092424);
 
@@ -1345,21 +1349,30 @@ void func_800960E4(int value) {
 }
 
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80096150);
+extern u16 D_800AFE9C;
+extern u16 D_800AFC6C;
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80096178);
+void func_80096150(void) {
+    func_800960E4(D_800AFE9C);
+}
+
+void func_80096178(void) {
+    func_800960E4(D_800AFC6C);
+}
 
 // Is button pressed handler
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800961A0);
-/*
 void func_800961A0(void) {
-    FieldScriptVMCheckControllerInput(gController1HeldButtons);
+    FieldScriptVMCheckControllerInput(D_800AFE9C);
 }
-*/
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800961C8);
+void func_800961C8(void) {
+    FieldScriptVMCheckControllerInput(D_800AFC6C);
+}
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800961F0);
+void func_800961F0(void) {
+    D_800AFC6C = 0;
+    g_FieldScriptVMCurActor->scriptInstructionPointer++;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80096214);
 
@@ -1686,7 +1699,11 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009A420);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009A490);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009A514);
+extern s16 D_800AF98C;
+
+int func_8009A514(void) {
+    return (7 - ((D_800AF98C - 0x100) >> 9)) & 7;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009A534);
 
@@ -1756,7 +1773,7 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009A958);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009AA00);
 
-extern u16 D_800AF98C;
+extern s16 D_800AF98C;
 void func_8009AB08(int rotation) {
     short rotationValue;
 
@@ -1903,13 +1920,21 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009BF8C);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009C01C);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009C0B4);
+void func_8009C0B4(void) {
+    func_8009C5A8(D_800AFD1C, 0);
+}
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009C0DC);
+void func_8009C0DC(void) {
+    func_8009C5A8(D_800AFD1C, 1);
+}
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009C104);
+void func_8009C104(void) {
+    func_8009C5A8(D_800AFD1C, 2);
+}
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009C12C);
+void func_8009C12C(void) {
+    func_8009C5A8(D_800AFD1C, 3);
+}
 
 // https://decomp.me/scratch/tL6mE
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009C154);

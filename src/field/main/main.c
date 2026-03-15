@@ -37,7 +37,10 @@ INCLUDE_ASM("asm/field/nonmatchings/main/main", func_80077884);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/main", func_80077AB4);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/main", func_80077C60);
+void func_80077C60(void) {
+    func_80077884();
+    func_80077AB4();
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/main", func_80077C88);
 /*
