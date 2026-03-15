@@ -626,7 +626,13 @@ void FieldScriptVMHandlerDecreasePartyGearHp(void) {
     g_FieldScriptVMCurActor->scriptInstructionPointer += 4;
 }
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008DE64);
+void func_8008DE64(void) {
+    int index = FieldScriptVMGetActorIndex(1);
+    if (index != 0xFF) {
+        g_FieldScriptVMCurActor->parentActorId = index;
+    }
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 2;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008DEBC);
 
@@ -674,7 +680,10 @@ void func_8008E46C(void) {
     func_8008E148(((u16*)g_FieldScriptVMCurActor)[3]);
 }
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008E498);
+void func_8008E498(int value) {
+    FieldScriptMemoryWriteU16(FieldScriptVMGetInstructionArgument(1) & 0xFFFF, value & 0xFFFF);
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 3;
+}
 
 void func_8008E4EC(void) {
     func_8008E498(*(u16*)g_FieldScriptVMCurActor);
@@ -735,7 +744,12 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008F394);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008F3D0);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008F444);
+void func_8008F444(void) {
+    int a = FieldScriptVMGetArgument(3) << 1;
+    int b = FieldScriptVMGetArgument(1);
+    func_8003A344(a, b);
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 5;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008F4A0);
 
@@ -1774,7 +1788,10 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80098738);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800988B8);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009899C);
+void func_8009899C(void) {
+    FieldScriptMemoryWriteU16(FieldScriptVMGetInstructionArgument(1) & 0xFFFF, g_FieldScriptVMCurActor->rotationY & 0xFFF);
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 3;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800989F0);
 
@@ -1866,7 +1883,11 @@ int func_8009A514(void) {
     return (7 - ((D_800AF98C - 0x100) >> 9)) & 7;
 }
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009A534);
+void func_8009A534(void) {
+    int addr = FieldScriptVMGetInstructionArgument(1) & 0xFFFF;
+    FieldScriptMemoryWriteU16(addr, func_8009A514() & 0xFFFF);
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 3;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009A58C);
 
