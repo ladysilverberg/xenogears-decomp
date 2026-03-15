@@ -210,13 +210,26 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008800C);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80088198);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800881E8);
+void func_800881E8(void) {
+    u8 mode = ((u8*)g_FieldScriptVMCurScriptData)[g_FieldScriptVMCurActor->scriptInstructionPointer + 1];
+    if (mode == 0) {
+        func_800A915C();
+    } else {
+        func_800A91F0();
+    }
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 2;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008825C);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800882B8);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80088360);
+void func_80088360(void) {
+    int charIndex = FieldScriptVMGetArgument(1);
+    int gearId = FieldScriptVMGetArgument(3);
+    g_GameState->characters[charIndex].gearId = gearId;
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 5;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800883D4);
 
