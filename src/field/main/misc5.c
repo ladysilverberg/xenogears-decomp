@@ -296,7 +296,11 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc5", func_800A94A4);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc5", func_800A9688);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc5", func_800A987C);
+extern int rand(void);
+
+int func_800A987C(int range) {
+    return (rand() * range + 1) >> 15;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc5", func_800A98B4);
 
