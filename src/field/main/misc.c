@@ -169,7 +169,12 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80087AB8);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80087B5C);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80087C0C);
+extern s32 D_8004F300;
+
+void func_80087C0C(void) {
+    D_8004F300 = 1;
+    g_FieldScriptVMCurActor->scriptInstructionPointer++;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80087C34);
 
@@ -387,7 +392,10 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008D26C);
 void func_8008D2D8(void) {
 }
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008D2E0);
+void func_8008D2E0(int value, int offset) {
+    ((u8*)g_FieldScriptVMCurScriptData)[offset + 1] = value >> 8;
+    ((u8*)g_FieldScriptVMCurScriptData)[offset] = value;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008D30C);
 
@@ -583,7 +591,9 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008E340);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008E394);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008E3E8);
+void func_8008E3E8(void) {
+    func_8008E148(*(u16*)g_FieldScriptVMCurActor);
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008E414);
 
@@ -1569,7 +1579,10 @@ void FieldScriptVMHandlerRestoreMp(void) {
     g_FieldScriptVMCurActor->scriptInstructionPointer++;
 }
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800972F4);
+void func_800972F4(void) {
+    D_800B00C0 = 1;
+    g_FieldScriptVMCurActor->scriptInstructionPointer++;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009731C);
 

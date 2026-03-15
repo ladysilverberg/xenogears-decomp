@@ -139,7 +139,11 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc5", func_800A6C40);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc5", func_800A6E70);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc5", func_800A7064);
+extern void* D_800B00C4;
+
+void func_800A7064(void) {
+    HeapFree(D_800B00C4);
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc5", func_800A708C);
 
