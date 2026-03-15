@@ -290,7 +290,13 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc5", func_800A9374);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc5", func_800A93CC);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc5", func_800A9460);
+void func_800A9460(void) {
+    int i;
+    for (i = 0; i < 0x40; i++) {
+        func_800A92AC(i);
+    }
+    FieldRenderSync();
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc5", func_800A94A4);
 
@@ -562,7 +568,16 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc5", func_800ACB90);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc5", func_800ACC58);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc5", func_800ACCB0);
+extern s32 D_8004F300;
+extern void* D_800AF76C;
+extern void* D_800AF770;
+
+void func_800ACCB0(void) {
+    if (D_8004F300) {
+        HeapFree(D_800AF76C);
+        HeapFree(D_800AF770);
+    }
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc5", func_800ACCF4);
 

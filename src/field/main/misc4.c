@@ -782,7 +782,15 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc4", func_80085C3C);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc4", func_80085C90);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc4", func_80085EEC);
+extern void* D_8004F2FC;
+
+void func_80085EEC(void) {
+    if (D_8004F2FC) {
+        func_80039C4C(D_8004F2FC);
+        func_800399D4(D_8004F2FC);
+        D_8004F2FC = 0;
+    }
+}
 
 extern s32 D_8004F364;
 extern s32 D_8004F368;
