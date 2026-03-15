@@ -915,7 +915,13 @@ void FieldScriptVMHandlerSetControllerBtnMask(void) {
     g_FieldScriptVMCurActor->scriptInstructionPointer += 3;
 }
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80092664);
+void func_80092664(void) {
+    int arg3 = FieldScriptVMGetArgument(3);
+    u8 byte1 = ((u8*)g_FieldScriptVMCurScriptData)[g_FieldScriptVMCurActor->scriptInstructionPointer + 1];
+    u8 byte2 = ((u8*)g_FieldScriptVMCurScriptData)[g_FieldScriptVMCurActor->scriptInstructionPointer + 2];
+    func_800924D4(byte1, byte2, arg3);
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 5;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800926C8);
 
@@ -1794,7 +1800,15 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80098430);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800984EC);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800985BC);
+extern char D_8006FD1C[];
+
+void func_800985BC(void) {
+    if (g_FieldSystemMode == 0) {
+        int val = FieldScriptVMGetVariableValue(FieldScriptVMGetInstructionArgument(1) & 0xFFFF);
+        func_800379C8(&D_8006FD1C, val, val);
+    }
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 3;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009861C);
 
@@ -2082,9 +2096,23 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009B708);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009B7A8);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009B824);
+extern s16 D_800AF9F6;
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009B884);
+void func_8009B824(void) {
+    if (D_800AF9F6 == 0) {
+        func_8009B7A8(0, FieldScriptVMGetArgument(1));
+        g_FieldScriptVMCurActor->scriptInstructionPointer += 3;
+    }
+    D_800B00C0 = 1;
+}
+
+void func_8009B884(void) {
+    if (D_800AF9F6 == 0) {
+        func_8009B7A8(0, FieldScriptVMGetArgument(1));
+        g_FieldScriptVMCurActor->scriptInstructionPointer += 3;
+    }
+    D_800B00C0 = 1;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009B8E4);
 
