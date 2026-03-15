@@ -623,13 +623,21 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008E148);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008E1B4);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008E298);
+void func_8008E298(void) {
+    func_8008E0DC(*(u16*)g_FieldActors[FieldScriptVMGetActorIndex(3)].pActorData);
+}
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008E2EC);
+void func_8008E2EC(void) {
+    func_8008E0DC(((u16*)g_FieldActors[FieldScriptVMGetActorIndex(3)].pActorData)[1]);
+}
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008E340);
+void func_8008E340(void) {
+    func_8008E0DC(((u16*)g_FieldActors[FieldScriptVMGetActorIndex(3)].pActorData)[2]);
+}
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008E394);
+void func_8008E394(void) {
+    func_8008E0DC(((u16*)g_FieldActors[FieldScriptVMGetActorIndex(3)].pActorData)[3]);
+}
 
 void func_8008E3E8(void) {
     func_8008E148(*(u16*)g_FieldScriptVMCurActor);
