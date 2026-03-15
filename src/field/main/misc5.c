@@ -308,7 +308,18 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc5", func_800A98E8);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc5", func_800A99A8);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc5", func_800A9B1C);
+int func_800A9B1C(int value, int delta) {
+    if (delta < 0) {
+        value += delta;
+        if (value < 0)
+            value = 0;
+    } else {
+        value += delta;
+        if (value >= 0x100)
+            value = 0xFF;
+    }
+    return value;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc5", func_800A9B54);
 

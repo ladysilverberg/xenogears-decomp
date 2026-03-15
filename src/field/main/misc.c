@@ -209,7 +209,12 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80088360);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800883D4);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008848C);
+extern s16 D_800B236C;
+
+void func_8008848C(void) {
+    D_800B236C = ((u8*)g_FieldScriptVMCurScriptData)[g_FieldScriptVMCurActor->scriptInstructionPointer + 1] ^ 1;
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 2;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800884CC);
 
@@ -288,7 +293,11 @@ void func_8008A508(void) {}
 void func_8008A510(void) {}
 void func_8008A518(void) {}
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008A520);
+void func_8008A520(void) {
+    while (func_8008A558()) {
+        Vsync(0);
+    }
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008A558);
 
@@ -860,7 +869,15 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80093740);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80093790);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800937E0);
+extern s32 D_800ADB64;
+extern s32 D_8004F350;
+
+void func_800937E0(void) {
+    D_800ADB64 = 2;
+    D_800B00C0 = 1;
+    D_8004F350++;
+    g_FieldScriptVMCurActor->scriptInstructionPointer++;
+}
 
 extern s32 D_8004F350;
 extern s8 D_80059171;
@@ -1420,7 +1437,10 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80096214);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800962C0);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009631C);
+void func_8009631C(void) {
+    func_8009635C(FieldScriptVMGetArgument(1));
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 3;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009635C);
 
@@ -1618,7 +1638,10 @@ void func_800972F4(void) {
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009731C);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80097364);
+void func_80097364(void) {
+    func_80071DCC(FieldScriptVMGetArgument(1));
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 3;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800973A4);
 
