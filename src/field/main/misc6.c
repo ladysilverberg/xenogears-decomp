@@ -551,9 +551,8 @@ int FieldCharacterIdToPartyId(int characterId) {
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc6", func_8009FA54);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc6", func_8009FB98);
-/*
-Matches, but the struct D_800B2268 is part of needs recovery first.
+extern s32 D_8004F34C;
+extern s32 D_800B2268[];
 
 void func_8009FB98(void) {
     D_8004F34C |= 0xC000;
@@ -563,7 +562,6 @@ void func_8009FB98(void) {
     D_800B2268[0] = SCRIPT_READ_U8_REL(1);
     g_FieldScriptVMCurActor->scriptInstructionPointer += 2;
 }
-*/
 
 extern s32 D_8006F990[];
 int func_8009FC10(int arg0) {
