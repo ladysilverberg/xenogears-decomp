@@ -2427,7 +2427,19 @@ void func_8009ACB4(void) {
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009ACEC);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009AD6C);
+extern u16 D_800AEA54[];
+extern s32 D_800ADB1C;
+
+void func_8009AD6C(void) {
+    u8 byte = ((u8*)g_FieldScriptVMCurScriptData)[g_FieldScriptVMCurActor->scriptInstructionPointer + 1];
+    u16 rotation = D_800AEA54[byte] | 0x8000;
+    g_FieldScriptVMCurActor->rotationX = rotation;
+    g_FieldScriptVMCurActor->rotationY = rotation;
+    if (!D_800ADB1C) {
+        g_FieldScriptVMCurActor->rotationZ = rotation;
+    }
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 2;
+}
 
 void func_8009ADDC(void) {
     D_800AF9D8[0] |= 0x4000;
