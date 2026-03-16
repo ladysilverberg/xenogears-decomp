@@ -478,7 +478,13 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008C180);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008C334);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008C7D8);
+void func_8008C7D8(void) {
+    if (*(u32*)((u8*)g_FieldScriptVMCurActor + 0x12C) & 0x1000) {
+        HeapFree(g_FieldScriptVMCurActor->unk114);
+        *(u32*)((u8*)g_FieldScriptVMCurActor + 0x12C) &= ~0x1000;
+    }
+    g_FieldScriptVMCurActor->scriptInstructionPointer++;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008C84C);
 
