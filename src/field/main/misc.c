@@ -107,7 +107,13 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80087148);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800871B0);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800873C4);
+extern u8 D_800B225F[];
+
+void func_800873C4(void) {
+    int index = FieldScriptVMGetArgument(1);
+    D_800B225F[index] = FieldScriptVMGetArgument(3);
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 5;
+}
 
 void func_80087420(void) {
     int arg1, arg2, arg3, arg4, arg5, arg6;
