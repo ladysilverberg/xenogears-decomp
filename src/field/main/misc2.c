@@ -1,5 +1,6 @@
 #include "common.h"
 #include "field/main.h"
+#include "field/actor.h"
 #include "psyq/libgpu.h"
 #include "psyq/libgte.h"
 
@@ -137,7 +138,11 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc2", func_80075B44);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc2", func_800764B4);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc2", func_80076A74);
+void func_80076A74(void* ptr) {
+    void* inner = *(void**)((u8*)ptr + 0x7C);
+    s16 entityId = *(s16*)((u8*)inner + 0x14);
+    g_FieldActors[entityId].pActorData->flags |= 0x10000;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc2", func_80076AC0);
 
