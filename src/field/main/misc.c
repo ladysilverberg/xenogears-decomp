@@ -532,7 +532,14 @@ void func_8008CF9C(void) {
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008CFEC);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008D078);
+void func_8008D078(void) {
+    if (!FieldScriptVMGetArgument(1)) {
+        g_FieldScriptVMCurActor->flags &= ~0x800;
+    } else {
+        g_FieldScriptVMCurActor->flags |= 0x800;
+    }
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 3;
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008D0F4);
 
