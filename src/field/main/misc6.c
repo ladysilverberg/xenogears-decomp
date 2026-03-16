@@ -579,22 +579,25 @@ int func_8009FC10(int arg0) {
 }
 
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc6", func_8009FC48);
-/*
-Matches, but D_8005A39C (g_GameState) needs recovery first.
-
 void func_8009FC48(void) {
     int index = FieldScriptVMGetArgument(1);
     if (index >= 3) {
         index = 2;
     }
-    *(u8*)(D_8005A39C + index + 0x22B1) = 1;
+    *((u8*)g_GameState + index + 0x22B1) = 1;
     func_8009FD10(index);
     g_FieldScriptVMCurActor->scriptInstructionPointer += 3;
 }
-    */
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc6", func_8009FCAC);
+void func_8009FCAC(void) {
+    int index = FieldScriptVMGetArgument(1);
+    if (index >= 3) {
+        index = 2;
+    }
+    *((u8*)g_GameState + index + 0x22B1) = 0;
+    func_8009FD10(index);
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 3;
+}
 
 extern int D_8004F34C;
 void func_8009FD10(int arg0) {
