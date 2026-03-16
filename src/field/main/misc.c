@@ -1760,7 +1760,22 @@ void func_8009524C(void) {
     g_FieldScriptVMCurActor->scriptInstructionPointer++;
 }
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80095284);
+void func_80095284(void) {
+    void* spriteData = g_FieldActors[D_800AFD1C].pSpriteData;
+    u16 rot = g_FieldScriptVMCurActor->rotationX | 0x8000;
+    D_800B00C0 = 1;
+    g_FieldScriptVMCurActor->moveModified.vx = 0;
+    g_FieldScriptVMCurActor->moveModified.vy = 0;
+    g_FieldScriptVMCurActor->moveModified.vz = 0;
+    g_FieldScriptVMCurActor->move.vx = 0;
+    g_FieldScriptVMCurActor->move.vy = 0;
+    g_FieldScriptVMCurActor->move.vz = 0;
+    g_FieldScriptVMCurActor->rotationY = rot;
+    g_FieldScriptVMCurActor->rotationX = rot;
+    *(s32*)((u8*)spriteData + 0xC) = 0;
+    *(s32*)((u8*)spriteData + 0x14) = 0;
+    *(s32*)((u8*)spriteData + 0x18) = 0;
+}
 
 void func_80095300(void) {
     g_FieldControl.unkAngle = FieldScriptVMGetArgument(1);
