@@ -2413,7 +2413,9 @@ void func_8009ABFC(void) {
     func_8009A958(D_800AEA34[FieldScriptVMGetArgument(2)]);
 }
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009AC34);
+void func_8009AC34(void) {
+    func_8009A958((D_800AEA34[FieldScriptVMGetArgument(2)] - (u16)D_800AF98C) & 0xFFF);
+}
 
 void FieldScriptVMHandlerSetCurActorRotation(void) {
     int nRotationLUTIndex = FieldScriptVMGetArgument(1);
