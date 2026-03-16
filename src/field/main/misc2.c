@@ -13,7 +13,16 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc2", func_80072150);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc2", func_80072254);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc2", func_800722F4);
+extern MATRIX D_800AFA64;
+
+void func_800722F4(void) {
+    func_80072150();
+    SetRotMatrix(&D_800AFA64);
+    SetTransMatrix(&D_800AFA64);
+    if (g_FieldSystemMode == 0) {
+        func_802815B0();
+    }
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc2", func_8007234C);
 
