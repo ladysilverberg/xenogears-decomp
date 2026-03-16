@@ -1824,7 +1824,14 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8009640C);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800964B0);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80096534);
+void func_80096534(void) {
+    u8 bitIndex = ((u8*)g_FieldScriptVMCurScriptData)[g_FieldScriptVMCurActor->scriptInstructionPointer + 1];
+    if ((*(u16*)((u8*)g_GameState + 0x1D30) >> bitIndex) & 1) {
+        g_FieldScriptVMCurActor->scriptInstructionPointer += 4;
+    } else {
+        g_FieldScriptVMCurActor->scriptInstructionPointer = FieldScriptVMGetInstructionArgument(2);
+    }
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800965A8);
 
