@@ -1859,9 +1859,17 @@ void func_80096534(void) {
     }
 }
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800965A8);
+void func_800965A8(void) {
+    u8 bitIndex = ((u8*)g_FieldScriptVMCurScriptData)[g_FieldScriptVMCurActor->scriptInstructionPointer + 1];
+    *(u16*)((u8*)g_GameState + 0x1D30) |= (1 << bitIndex);
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 2;
+}
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800965F4);
+void func_800965F4(void) {
+    u8 bitIndex = ((u8*)g_FieldScriptVMCurScriptData)[g_FieldScriptVMCurActor->scriptInstructionPointer + 1];
+    *(u16*)((u8*)g_GameState + 0x1D30) &= ~(1 << bitIndex);
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 2;
+}
 
 void func_80096644(void) {
     int arg = FieldScriptVMGetArgument(1);
