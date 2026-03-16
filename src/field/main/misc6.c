@@ -666,7 +666,11 @@ void func_800A0D3C(void) {
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc6", func_800A0DC0);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc6", func_800A0DFC);
+void func_800A0DFC(void) {
+    int addr = FieldScriptVMGetInstructionArgument(1) & 0xFFFF;
+    FieldScriptMemoryWriteU16(addr, ArchiveGetDiscNumber());
+    g_FieldScriptVMCurActor->scriptInstructionPointer += 3;
+}
 
 extern s32 D_800ADB74;
 
