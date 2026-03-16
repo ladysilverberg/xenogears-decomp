@@ -854,7 +854,16 @@ void func_8008F558(void) {
     g_FieldScriptVMCurActor->scriptInstructionPointer += 9;
 }
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_8008F5E4);
+void func_8008F5E4(void) {
+    int result = func_8003A5D0(-1);
+    int arg = FieldScriptVMGetArgument(1);
+    if (!(result & (arg << 8))) {
+        g_FieldScriptVMCurActor->scriptInstructionPointer += 3;
+    } else {
+        g_FieldScriptVMCurActor->scriptInstructionPointer--;
+    }
+    D_800B00C0 = 1;
+}
 
 void func_8008F668(void) {
     func_80085634(FieldScriptVMGetArgument(1), 3);
