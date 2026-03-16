@@ -295,7 +295,15 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_800896D4);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80089880);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc", func_80089A80);
+extern s32 D_800ADB8C;
+
+void func_80089A80(void) {
+    g_FieldScriptMaxInstructionCount += 4;
+    if (!D_800ADB8C) {
+        func_800A99A8(D_800AFD1C);
+    }
+    g_FieldScriptVMCurActor->scriptInstructionPointer++;
+}
 
 void func_80089AE4(void) {
     u8 byte;
