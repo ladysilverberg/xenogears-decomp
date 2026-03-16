@@ -159,7 +159,13 @@ INCLUDE_ASM("asm/field/nonmatchings/main/misc5", func_800A7218);
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc5", func_800A732C);
 
-INCLUDE_ASM("asm/field/nonmatchings/main/misc5", func_800A7394);
+void func_800A7394(void) {
+    do {
+        func_80077DAC();
+        func_8007554C();
+    } while (ArchiveDataSync() || g_FieldCurRenderContextIndex != 0);
+    CdDataSync(0);
+}
 
 INCLUDE_ASM("asm/field/nonmatchings/main/misc5", func_800A73E8);
 
