@@ -15,11 +15,25 @@ uname_M := $(shell sh -c 'uname -m 2>/dev/null || echo not')
 
 # Tools
 # The binary tools in this repo require linux/x86_64 -- if we're on that platform,
-# use prebuild Gears and do build directly on the host
+# use prebuilt Gears and do build directly on the host.
+# Edge-cases may require building Gears from source on linux/x86_64 (ex: mismatched GLIBC version)
+# so we default to the locally built binary if it is present
 ifeq ($(uname_S)-$(uname_M),Linux-x86_64)
-	GEARS        := $(TOOLS_DIR)/gears/prebuilt/gears
-	NEED_DOCKER := false
+	GEARS_LOCAL  := $(TOOLS_DIR)/gears/target/release/gears
+ifneq (,$(shell sh -c '$(GEARS_LOCAL) --version 2>/dev/null || true'))
+	GEARS        := $(GEARS_LOCAL)
+ifneq (,$(shell sh -c 'command -v cargo || true'))
+	# keeps the local build up to date with its "sources" for convenience, if cargo is available
+	# (not actual versioning, just file mod_date for now)
+	NEED_GEARS := true
+else
 	NEED_GEARS := false
+endif
+else
+	GEARS        := $(TOOLS_DIR)/gears/prebuilt/gears
+	NEED_GEARS := false
+endif
+	NEED_DOCKER := false
 else
 	# Use the compiled version of Gears
 	GEARS        := $(TOOLS_DIR)/gears/target/release/gears
@@ -44,8 +58,11 @@ all: build
 
 ifeq ($(NEED_GEARS),true)
 # add make targets to build Gears, and add dependencies.
-$(GEARS):
+GEARS_SRC := $(TOOLS_DIR)/gears/Cargo.toml $(TOOLS_DIR)/gears/Cargo.lock $(wildcard $(TOOLS_DIR)/gears/src/*.rs)
+$(GEARS): $(GEARS_SRC)
 	cd $(TOOLS_DIR)/gears && cargo build --release
+	#timestamp trick (sorry, have not yet found a better way to do this)
+	touch $@
 
 ifneq ($(NEED_DOCKER), true)
 build: $(GEARS)
